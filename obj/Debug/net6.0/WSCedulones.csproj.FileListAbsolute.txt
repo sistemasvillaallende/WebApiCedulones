@@ -31,3 +31,8 @@ D:\NET2022\WSCedulones\obj\Debug\net6.0\refint\WSCedulones.dll
 D:\NET2022\WSCedulones\obj\Debug\net6.0\WSCedulones.pdb
 D:\NET2022\WSCedulones\obj\Debug\net6.0\WSCedulones.genruntimeconfig.cache
 D:\NET2022\WSCedulones\obj\Debug\net6.0\ref\WSCedulones.dll
+D:\NET2022\WSCedulones\obj\Debug\net6.0\staticwebassets\msbuild.WSCedulones.Microsoft.AspNetCore.StaticWebAssets.props
+D:\NET2022\WSCedulones\obj\Debug\net6.0\staticwebassets\msbuild.build.WSCedulones.props
+D:\NET2022\WSCedulones\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WSCedulones.props
+D:\NET2022\WSCedulones\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WSCedulones.props
+D:\NET2022\WSCedulones\obj\Debug\net6.0\staticwebassets.pack.json
