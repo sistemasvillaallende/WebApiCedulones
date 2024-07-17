@@ -15,7 +15,7 @@ namespace WSCedulones.Entities
             try
             {
                 //return new SqlConnection("Data Source=10.11.15.107;Initial Catalog=SIIMVA;User ID=general");
-                return new SqlConnection("Data Source=10.0.1.52;Initial Catalog=SIIMVA;User ID=general");
+                return new SqlConnection("Data Source=10.0.0.23;Initial Catalog=SIIMVA;User ID=general");
             }
             catch (Exception)
             {
@@ -26,7 +26,7 @@ namespace WSCedulones.Entities
         {
             try
             {
-                return new SqlConnection("Data Source=10.0.1.52;Initial Catalog=SIIMVA;User ID=general");
+                return new SqlConnection("Data Source=10.0.0.23;Initial Catalog=SIIMVA;User ID=general");
             }
             catch (Exception)
             {
@@ -38,7 +38,7 @@ namespace WSCedulones.Entities
         {
             try
             {
-                return new SqlConnection("Data Source=10.0.1.52;Initial Catalog=" + strDB + ";User ID=general");
+                return new SqlConnection("Data Source=10.0.023;Initial Catalog=" + strDB + ";User ID=general");
             }
             catch (Exception)
             {

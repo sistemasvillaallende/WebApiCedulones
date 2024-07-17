@@ -4,7 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\NET2022\WSCedulones\bin\Release\net6.0\publish\</_PublishTargetUrl>
-    <History>True|2023-09-21T21:11:23.8430814Z;True|2023-09-21T12:14:23.2826945-03:00;</History>
+    <_PublishTargetUrl>D:\DN\DEV\Project1\WebApiCedulones\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2024-07-17T12:18:48.0482937Z||;True|2024-07-17T09:18:35.5831219-03:00||;True|2023-09-21T18:11:23.8430814-03:00||;True|2023-09-21T12:14:23.2826945-03:00||;</History>
+    <LastFailureDetails />
   </PropertyGroup>
 </Project>
