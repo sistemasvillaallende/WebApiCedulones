@@ -1,11 +1,11 @@
-﻿using WSCedulones.Entities;
+using WSCedulones.Entities;
 
 namespace WSCedulones.Services
 {
-    public class CedulonesIyCServices : ICedulonesIyCServices
+    public class CedulonesCreditoServices : ICedulonesCreditoServices
     {
 
-        public long EmitoCedulonComercio(int legajo, string vencimiento,
+        public long EmitoCedulonCredito(int legajo, string vencimiento,
             decimal monto_cedulon, List<Entities.VCtasctes> Listadeuda,
             int nroProc)
         {
@@ -13,12 +13,11 @@ namespace WSCedulones.Services
             try
             {
                 Entities.Cedulones oCedulon = new Entities.Cedulones();
-                Entities.IndyCom oIndycom = Entities.IndyCom.GetIndycomByPk(legajo);
-                if (oIndycom != null)
+                Entities.Credito oCredito = Entities.Credito.GetCreditoByPk(legajo);
+                if (oCredito != null)
                 {
-
                     oCedulon.fecha_emision = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
-                    oCedulon.subsistema = 3;
+                    oCedulon.subsistema = 7;
                     //TIPO_CEDULON :
                     //1-CEDULON ANUAL
                     //2-CEDULON MASIVO PERIODICO
@@ -41,19 +40,19 @@ namespace WSCedulones.Services
                     oCedulon.nro_decreto = "";
                     //////////////////////////////////
                     //Domicilio postal////////////////////
-                    oCedulon.nro_dom_esp = oIndycom.nro_dom_esp;
-                    oCedulon.piso_dpto_esp = oIndycom.piso_dpto_esp;
+                    oCedulon.nro_dom_esp = oCredito.nro_dom_esp;
+                    oCedulon.piso_dpto_esp = oCredito.piso_dpto_esp;
                     oCedulon.local_esp = "";
-                    oCedulon.nom_calle_dom_esp = oIndycom.nom_calle_dom_esp;
-                    oCedulon.nom_barrio_dom_esp = oIndycom.nom_barrio_dom_esp;
-                    oCedulon.ciudad_dom_esp = oIndycom.ciudad_dom_esp;
-                    oCedulon.provincia_dom_esp = oIndycom.provincia_dom_esp;
+                    oCedulon.nom_calle_dom_esp = oCredito.nom_calle_dom_esp;
+                    oCedulon.nom_barrio_dom_esp = oCredito.nom_barrio_dom_esp;
+                    oCedulon.ciudad_dom_esp = oCredito.ciudad_dom_esp;
+                    oCedulon.provincia_dom_esp = oCredito.provincia_dom_esp;
                     oCedulon.pais_dom_esp = "";
-                    oCedulon.codigo_postal_dom_esp = oIndycom.cod_postal_dom_esp;
-                    oCedulon.nro_badec = oIndycom.nro_bad;
+                    oCedulon.codigo_postal_dom_esp = oCredito.cod_postal_dom_esp.ToString();
+                    oCedulon.nro_badec = oCredito.nro_bad;
                     oCedulon.nro_contrib = 0;
-                    oCedulon.nom_badec = oIndycom.nombre;
-                    oCedulon.legajo = oIndycom.legajo;
+                    oCedulon.nom_badec = oCredito.nombre;
+                    oCedulon.legajo = oCredito.legajo;
                     //////////////////////////////////////
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;
@@ -68,11 +67,11 @@ namespace WSCedulones.Services
         }
 
 
-        public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonComercio(long nroCedulon)
+        public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonCredito(long nroCedulon)
         {
             try
             {
-                return Entities.CEDULON_PRINT_CABECERA.readIndyCom(nroCedulon);
+                return Entities.CEDULON_PRINT_CABECERA.readCredito(nroCedulon);
             }
             catch (Exception)
             {
@@ -81,11 +80,11 @@ namespace WSCedulones.Services
             }
         }
 
-        public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonComercio(long nroCedulon)
+        public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonCredito(long nroCedulon)
         {
             try
             {
-                return Entities.CEDULON_PRINT_DETALLE.readIndyCom(nroCedulon);
+                return Entities.CEDULON_PRINT_DETALLE.readCredito(nroCedulon);
             }
             catch (Exception)
             {

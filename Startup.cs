@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using WSCedulones.Services;
-using Swashbuckle.AspNetCore.SwaggerGen; 
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace WSCedulones
 {
@@ -25,8 +25,10 @@ namespace WSCedulones
 
             // configure DI for application services
             services.AddScoped<ICedulonesAutosServices, CedulonesAutosServices>();
-            services.AddScoped<ICedulonesIyCServives, CedulonesIyCServices>();
+            services.AddScoped<ICedulonesIyCServices, CedulonesIyCServices>();
             services.AddScoped<ICedulonesTasaServices, CedulonesTasaServices>();
+            services.AddScoped<ICedulonesCreditoServices, CedulonesCreditoServices>();
+
             //
             services.AddCors();
 
