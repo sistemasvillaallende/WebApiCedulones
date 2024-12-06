@@ -508,6 +508,83 @@ namespace WSCedulones.Entities
             }
         }
 
+
+        public static List<CEDULON_PRINT_DETALLE> readCredito(long nroCedulon)
+        {
+            try
+            {
+                List<CEDULON_PRINT_DETALLE> detalleCedulonList = new List<CEDULON_PRINT_DETALLE>();
+
+                string query = @"
+            SELECT 
+                b.periodo, 
+                ci.des_categoria AS des_concepto_credito,
+                ISNULL(b.debe, 0) - ISNULL(b.recargo, 0) AS monto_original,
+                ISNULL(b.recargo, 0) AS recargo,
+                (SELECT SUM(haber) 
+                 FROM CM_CTASCTES_CREDITO_MATERIALES C2 
+                 WHERE C2.nro_transaccion = b.nro_transaccion) AS 'Saldo a favor',
+                (b.debe - 
+                    (SELECT SUM(haber) 
+                     FROM CM_CTASCTES_CREDITO_MATERIALES C2 
+                     WHERE C2.nro_transaccion = b.nro_transaccion)
+                ) - a.monto_pagado AS desc_interes,
+                a.monto_pagado
+            FROM 
+                DEUDAS_X_CEDULON3 AS a 
+            INNER JOIN 
+                CM_CTASCTES_CREDITO_MATERIALES AS b 
+                ON a.nro_transaccion = b.nro_transaccion 
+                AND b.tipo_transaccion = 1 
+                AND b.pagado = 0
+            JOIN 
+                CM_CATE_DEUDA_CREDITO_MATERIALES AS ci 
+                ON a.categoria_deuda = ci.cod_categoria
+            WHERE 
+                a.nro_cedulon = @nroCedulon
+            ORDER BY 
+                b.periodo";
+
+                using (SqlConnection connection = GetConnection())
+                {
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@nroCedulon", (object)nroCedulon);
+                    command.Connection.Open();
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            CEDULON_PRINT_DETALLE detalleCedulon = new CEDULON_PRINT_DETALLE();
+                            if (!sqlDataReader.IsDBNull(0))
+                                detalleCedulon.periodo = sqlDataReader.GetString(0);
+                            if (!sqlDataReader.IsDBNull(1))
+                                detalleCedulon.concepto = sqlDataReader.GetString(1);
+                            if (!sqlDataReader.IsDBNull(2))
+                                detalleCedulon.montoOriginal = sqlDataReader.GetDecimal(2);
+                            if (!sqlDataReader.IsDBNull(3))
+                                detalleCedulon.recargo = sqlDataReader.GetDecimal(3);
+                            if (!sqlDataReader.IsDBNull(4))
+                                detalleCedulon.saldoFavor = sqlDataReader.GetDecimal(4);
+                            if (!sqlDataReader.IsDBNull(5))
+                                detalleCedulon.descInteres = sqlDataReader.GetDecimal(5);
+                            if (!sqlDataReader.IsDBNull(6))
+                                detalleCedulon.montoPagado = sqlDataReader.GetDecimal(6);
+                            detalleCedulonList.Add(detalleCedulon);
+                        }
+                    }
+                }
+                return detalleCedulonList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
 

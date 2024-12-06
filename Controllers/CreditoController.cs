@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using WSCedulones.Entities;
 using WSCedulones.Services;
 
@@ -6,19 +6,19 @@ namespace WSCedulones.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public class ComercioController : Controller
+    public class CreditoController : Controller
     {
-        private ICedulonesIyCServices _IComercioServices;
-        public ComercioController(ICedulonesIyCServices ComercioService)
+        private ICedulonesCreditoServices _ICreditoServices;
+        public CreditoController(ICedulonesCreditoServices CreditoService)
         {
-            _IComercioServices = ComercioService;
+            _ICreditoServices = CreditoService;
         }
         [HttpPost]
-        public IActionResult EmitoCedulonComercio(CEDULON_INSERT_COMERCIO oCedulon)
+        public IActionResult EmitoCedulonCredito(CEDULON_INSERT_COMERCIO oCedulon)
         {
             try
             {
-                var nro_cedulon = _IComercioServices.EmitoCedulonComercio(
+                var nro_cedulon = _ICreditoServices.EmitoCedulonCredito(
                     oCedulon.legajo, oCedulon.vencimiento, oCedulon.monto_cedulon,
                     oCedulon.Listadeuda, oCedulon.nroProc);
                 if (nro_cedulon == 0)
@@ -35,13 +35,13 @@ namespace WSCedulones.Controllers
 
         }
         [HttpGet]
-        public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonComercio(long nroCedulon)
+        public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonCredito(long nroCedulon)
         {
             try
             {
-                var CabeceraPrintCedulonComercio = 
-                    _IComercioServices.getCabeceraPrintCedulonComercio(nroCedulon);
-                return CabeceraPrintCedulonComercio;
+                var CabeceraPrintCedulonCredito = 
+                    _ICreditoServices.getCabeceraPrintCedulonCredito(nroCedulon);
+                return CabeceraPrintCedulonCredito;
             }
             catch (Exception)
             {
@@ -50,12 +50,12 @@ namespace WSCedulones.Controllers
             }
         }
         [HttpGet]
-        public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonComercio(long nroCedulon)
+        public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonCredito(long nroCedulon)
         {
             try
             {
                 var CabeceraPrintCedulonComercio = 
-                    _IComercioServices.getDetallePrintCedulonComercio(nroCedulon);
+                    _ICreditoServices.getDetallePrintCedulonCredito(nroCedulon);
                 return CabeceraPrintCedulonComercio;
             }
             catch (Exception)

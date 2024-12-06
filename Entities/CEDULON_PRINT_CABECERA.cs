@@ -505,5 +505,57 @@ namespace WSCedulones.Entities
                 throw ex;
             }
         }
+
+
+                public static CEDULON_PRINT_CABECERA readCredito(long nroCedulon)
+        {
+            try
+            {
+                CEDULON_PRINT_CABECERA obj = null;
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine("SELECT nro_cedulon, i.legajo, vencimiento_2, monto_2,");
+                sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE");
+                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.legajo = i.legajo");
+                sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
+                sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
+
+                using (SqlConnection con = GetConnection())
+                {
+                    SqlCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sql.ToString();
+                    cmd.Parameters.AddWithValue("@nroCedulon", nroCedulon);
+                    cmd.Connection.Open();
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+
+                        while (dr.Read())
+                        {
+                            obj = new CEDULON_PRINT_CABECERA();
+                            if (!dr.IsDBNull(dr.GetOrdinal("nro_cedulon")))
+                                obj.nroCedulon = dr.GetInt32(dr.GetOrdinal("nro_cedulon"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("legajo")))
+                                obj.denominacion = dr.GetInt32(dr.GetOrdinal("legajo")).ToString();
+                            if (!dr.IsDBNull(dr.GetOrdinal("vencimiento_2")))
+                                obj.vencimiento = dr.GetDateTime(dr.GetOrdinal("vencimiento_2"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("monto_2")))
+                                obj.montoPagar = dr.GetDecimal(dr.GetOrdinal("monto_2"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("nombre")))
+                                obj.nombre = dr.GetString(dr.GetOrdinal("nombre"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("CUIT")))
+                                obj.CUIT = dr.GetString(dr.GetOrdinal("CUIT"));
+                        }
+                    }
+                }
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
