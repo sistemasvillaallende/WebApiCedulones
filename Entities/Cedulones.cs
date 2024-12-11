@@ -187,7 +187,7 @@ namespace WSCedulones.Entities
                 //if (Convert.ToDateTime(oCedulon.vencimiento_2) < DateTime.Now)
                 //    strSQL.AppendLine("@vencimiento_2,");
                 //else
-                strSQL.AppendLine("DATEADD(dd,5,GETDATE()),");
+                strSQL.AppendLine("DATEADD(dd,10,GETDATE()),");
                 strSQL.AppendLine("@monto_2,");
                 strSQL.AppendLine("@contado,");
                 strSQL.AppendLine("@cheques,");

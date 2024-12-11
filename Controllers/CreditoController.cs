@@ -14,7 +14,7 @@ namespace WSCedulones.Controllers
             _ICreditoServices = CreditoService;
         }
         [HttpPost]
-        public IActionResult EmitoCedulonCredito(CEDULON_INSERT_COMERCIO oCedulon)
+        public IActionResult EmitoCedulonCredito(CEDULON_INSERT_CREDITO oCedulon)
         {
             try
             {
