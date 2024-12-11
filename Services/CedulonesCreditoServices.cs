@@ -32,7 +32,8 @@ namespace WSCedulones.Services
                     oCedulon.periodo = "";
                     oCedulon.vencimiento_1 = null;
                     oCedulon.monto_1 = 0;
-                    oCedulon.vencimiento_2 = vencimiento;
+                    //oCedulon.vencimiento_2 = vencimiento;
+                    oCedulon.vencimiento_2 =  DateTime.Now.AddDays(10).ToString("dd/MM/yyyy hh:mm:ss");
                     oCedulon.monto_2 = monto_cedulon;
                     oCedulon.contado = 0;
                     oCedulon.cheques = 0;
