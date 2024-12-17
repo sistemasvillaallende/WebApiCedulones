@@ -513,11 +513,12 @@ namespace WSCedulones.Entities
             {
                 CEDULON_PRINT_CABECERA obj = null;
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, i.legajo, vencimiento_2, monto_2,");
+                sql.AppendLine("SELECT nro_cedulon,  i.id_credito_materiales, vencimiento_2, monto_2,");
                 sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.legajo = i.legajo");
+                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales ");
                 sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
                 sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
+
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -537,8 +538,8 @@ namespace WSCedulones.Entities
                             obj = new CEDULON_PRINT_CABECERA();
                             if (!dr.IsDBNull(dr.GetOrdinal("nro_cedulon")))
                                 obj.nroCedulon = dr.GetInt32(dr.GetOrdinal("nro_cedulon"));
-                            if (!dr.IsDBNull(dr.GetOrdinal("legajo")))
-                                obj.denominacion = dr.GetInt32(dr.GetOrdinal("legajo")).ToString();
+                            if (!dr.IsDBNull(dr.GetOrdinal("id_credito_materiales")))
+                                obj.denominacion = dr.GetInt32(dr.GetOrdinal("id_credito_materiales")).ToString();
                             if (!dr.IsDBNull(dr.GetOrdinal("vencimiento_2")))
                                 obj.vencimiento = dr.GetDateTime(dr.GetOrdinal("vencimiento_2"));
                             if (!dr.IsDBNull(dr.GetOrdinal("monto_2")))

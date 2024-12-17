@@ -1,3 +1,4 @@
+using System.Globalization;
 using WSCedulones.Entities;
 
 namespace WSCedulones.Services
@@ -5,7 +6,7 @@ namespace WSCedulones.Services
     public class CedulonesCreditoServices : ICedulonesCreditoServices
     {
 
-        public long EmitoCedulonCredito(int legajo, string vencimiento,
+        public long EmitoCedulonCredito(int id_credito_materiales, string vencimiento,
             decimal monto_cedulon, List<Entities.VCtasctes> Listadeuda,
             int nroProc)
         {
@@ -13,9 +14,12 @@ namespace WSCedulones.Services
             try
             {
                 Entities.Cedulones oCedulon = new Entities.Cedulones();
-                Entities.Credito oCredito = Entities.Credito.GetCreditoByPk(legajo);
+                Entities.Credito oCredito = Entities.Credito.GetCreditoByPk(id_credito_materiales);
                 if (oCredito != null)
                 {
+
+                    // DateTimeFormatInfo culturaFecArgentina = new CultureInfo("es-AR", false).DateTimeFormat;
+                    // DateTime f = Convert.ToDateTime(vencimiento, culturaFecArgentina);
                     oCedulon.fecha_emision = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
                     oCedulon.subsistema = 7;
                     //TIPO_CEDULON :
@@ -30,9 +34,10 @@ namespace WSCedulones.Services
                     oCedulon.nro_emision = 0;
                     //Datos Factura Cedulon, Importe//
                     oCedulon.periodo = "";
-                    oCedulon.vencimiento_1 = null;
+                    oCedulon.vencimiento_1 = vencimiento ;
                     oCedulon.monto_1 = 0;
-                    oCedulon.vencimiento_2 = vencimiento;
+                    //oCedulon.vencimiento_2 = vencimiento;
+                    oCedulon.vencimiento_2 =  DateTime.Now.AddDays(10).ToString("dd/MM/yyyy hh:mm:ss");
                     oCedulon.monto_2 = monto_cedulon;
                     oCedulon.contado = 0;
                     oCedulon.cheques = 0;
@@ -52,7 +57,7 @@ namespace WSCedulones.Services
                     oCedulon.nro_badec = oCredito.nro_bad;
                     oCedulon.nro_contrib = 0;
                     oCedulon.nom_badec = oCredito.nombre;
-                    oCedulon.legajo = oCredito.legajo;
+                    oCedulon.id_credito = id_credito_materiales;
                     //////////////////////////////////////
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;

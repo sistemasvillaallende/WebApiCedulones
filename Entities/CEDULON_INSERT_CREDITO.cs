@@ -2,7 +2,7 @@ namespace WSCedulones.Entities
 {
     public class CEDULON_INSERT_CREDITO
     {
-        public int legajo { get; set; }
+        public int id_credito_materiales { get; set; }
         public string vencimiento { get; set; }
         public decimal monto_cedulon { get; set; }
         public List<Entities.VCtasctes> Listadeuda { get; set; }
@@ -10,7 +10,7 @@ namespace WSCedulones.Entities
 
         public CEDULON_INSERT_CREDITO()
         {
-            legajo = 0;
+            id_credito_materiales = 0;
             vencimiento = string.Empty;
             monto_cedulon = 0;
             Listadeuda = new List<VCtasctes>();

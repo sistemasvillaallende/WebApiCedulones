@@ -9,7 +9,7 @@ namespace WSCedulones.Entities
         public bool mPlanPago { get; set; }
         public bool mProcuracion { get; set; }
 
-        public int legajo { get; set; }
+        public int id_credito { get; set; }
         public int nro_bad { get; set; }
         public string nombre { get; set; }
         public string nro_cuit { get; set; }
@@ -33,7 +33,7 @@ namespace WSCedulones.Entities
             mPlanPago = false;
             mProcuracion = false;
 
-            legajo = 0;
+            id_credito = 0;
             nro_bad = 0;
             nombre = "";
             nro_cuit = "";
@@ -51,7 +51,7 @@ namespace WSCedulones.Entities
             mNewRecord = true;
             totalRows = 0;
         }
-        public static Entities.Credito GetCreditoByPk(int legajo)
+        public static Entities.Credito GetCreditoByPk(int id_credito_materiales)
         {
             Entities.Credito oCredito = null;
             SqlCommand cmd;
@@ -59,7 +59,7 @@ namespace WSCedulones.Entities
             SqlConnection cn = null;
 
             string sql = @"		SELECT 
-                                     ccm.legajo, 
+                                     ccm.id_credito_materiales, 
                                      b.nro_bad, 
                                      b.nombre, 
                                      b.CUIT,
@@ -73,12 +73,12 @@ namespace WSCedulones.Entities
                                 FROM CM_CREDITO_MATERIALES ccm (nolock)
                                 JOIN BADEC b 
                                     ON ccm.cuit_solicitante = b.CUIT 
-                                WHERE ccm.legajo = @legajo;";
+                                WHERE ccm.id_credito_materiales = @id_credito_materiales;";
 
 
             cmd = new SqlCommand();
 
-            cmd.Parameters.Add(new SqlParameter("@legajo", legajo));
+            cmd.Parameters.Add(new SqlParameter("@id_credito_materiales", id_credito_materiales));
 
             try
             {
@@ -96,7 +96,7 @@ namespace WSCedulones.Entities
 
                     oCredito = new Entities.Credito();
 
-                    if (!dr.IsDBNull(dr.GetOrdinal("legajo"))) { oCredito.legajo = dr.GetInt32(dr.GetOrdinal("legajo")); }
+                    if (!dr.IsDBNull(dr.GetOrdinal("id_credito_materiales"))) { oCredito.id_credito = dr.GetInt32(dr.GetOrdinal("id_credito_materiales")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nro_bad"))) { oCredito.nro_bad = dr.GetInt32(dr.GetOrdinal("nro_bad")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nombre"))) { oCredito.nombre = dr.GetString(dr.GetOrdinal("nombre")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("CUIT"))) { oCredito.nro_cuit = dr.GetString(dr.GetOrdinal("CUIT")); }
