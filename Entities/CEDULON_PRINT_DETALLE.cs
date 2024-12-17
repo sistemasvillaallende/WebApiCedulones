@@ -573,7 +573,6 @@ namespace WSCedulones.Entities
                                 detalleCedulon.descInteres = sqlDataReader.GetDecimal(5);
                             if (!sqlDataReader.IsDBNull(6))
                                 detalleCedulon.montoPagado = sqlDataReader.GetDecimal(6);
-                            detalleCedulonList.Add(detalleCedulon);
                              if (!sqlDataReader.IsDBNull(7))
                                 detalleCedulon.nro_transaccion = sqlDataReader.GetInt32(7);
                             detalleCedulonList.Add(detalleCedulon);

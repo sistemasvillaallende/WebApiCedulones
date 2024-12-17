@@ -19,7 +19,7 @@ namespace WSCedulones.Controllers
             try
             {
                 var nro_cedulon = _ICreditoServices.EmitoCedulonCredito(
-                    oCedulon.legajo, oCedulon.vencimiento, oCedulon.monto_cedulon,
+                    oCedulon.id_credito_materiales, oCedulon.vencimiento, oCedulon.monto_cedulon,
                     oCedulon.Listadeuda, oCedulon.nroProc);
                 if (nro_cedulon == 0)
                 {
@@ -54,8 +54,7 @@ namespace WSCedulones.Controllers
         {
             try
             {
-                var CabeceraPrintCedulonComercio = 
-                    _ICreditoServices.getDetallePrintCedulonCredito(nroCedulon);
+                var CabeceraPrintCedulonComercio = _ICreditoServices.getDetallePrintCedulonCredito(nroCedulon);
                 return CabeceraPrintCedulonComercio;
             }
             catch (Exception)

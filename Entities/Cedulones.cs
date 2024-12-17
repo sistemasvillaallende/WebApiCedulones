@@ -50,6 +50,7 @@ namespace WSCedulones.Entities
         public int parcela_cem { get; set; }
         public int nivel_cem { get; set; }
         public bool mNewRecord { get; set; }
+        public int? id_credito { get; set; }
 
         public List<Entities.VCtasctes> lstDeuda;
 
@@ -101,6 +102,7 @@ namespace WSCedulones.Entities
             mNewRecord = false;
             nro_cedulon = 0;
             lstDeuda = new List<VCtasctes>();
+            id_credito = 0;
         }
         public static long insert(Entities.Cedulones oCedulon, int nroProcuracion)
         {
@@ -166,7 +168,8 @@ namespace WSCedulones.Entities
                 strSQL.AppendLine("lote_cem,");//, o.lote_cem);
                 strSQL.AppendLine("parcela_cem,");//, o.parcela_cem);
                 strSQL.AppendLine("nivel_cem,");//, o.nivel_cem);
-                strSQL.AppendLine("nro_procuracion)");//, o.nivel_cem);
+                strSQL.AppendLine("nro_procuracion,");//, o.nivel_cem);
+                strSQL.AppendLine("id_credito)");//, o.nivel_cem);
                 strSQL.AppendLine("VALUES(");
 
                 strSQL.AppendLine("@nro_cedulon,");
@@ -215,7 +218,8 @@ namespace WSCedulones.Entities
                 strSQL.AppendLine("@lote_cem,");//, o.lote_cem);
                 strSQL.AppendLine("@parcela_cem,");//, o.parcela_cem);
                 strSQL.AppendLine("@nivel_cem,");//, o.nivel_cem);
-                strSQL.AppendLine("@nro_procuracion)");//, o.nivel_cem);
+                strSQL.AppendLine("@nro_procuracion,");//, o.nivel_cem);
+                strSQL.AppendLine("@id_credito)");//, o.nivel_cem);
                 cmd.Parameters.Add(new SqlParameter("@nro_cedulon", oCedulon.nro_cedulon));
                 //cmd.Parameters.Add(new SqlParameter("@fecha_emision", oCedulon.fecha_emision));
                 cmd.Parameters.Add(new SqlParameter("@subsistema", oCedulon.subsistema));
@@ -264,6 +268,7 @@ namespace WSCedulones.Entities
                 cmd.Parameters.Add(new SqlParameter("@parcela_cem", oCedulon.parcela_cem));//, o.parcela_cem);
                 cmd.Parameters.Add(new SqlParameter("@nivel_cem", oCedulon.nivel_cem));//, o.nivel_cem);
                 cmd.Parameters.Add(new SqlParameter("@nro_procuracion", nroProcuracion));//, o.nivel_cem);
+                cmd.Parameters.Add(new SqlParameter("@id_credito", oCedulon.id_credito));//, o.nivel_cem);
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = strSQL.ToString();
                 //cmd.Connection.Open();

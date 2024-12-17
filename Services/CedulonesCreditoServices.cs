@@ -6,7 +6,7 @@ namespace WSCedulones.Services
     public class CedulonesCreditoServices : ICedulonesCreditoServices
     {
 
-        public long EmitoCedulonCredito(int legajo, string vencimiento,
+        public long EmitoCedulonCredito(int id_credito_materiales, string vencimiento,
             decimal monto_cedulon, List<Entities.VCtasctes> Listadeuda,
             int nroProc)
         {
@@ -14,7 +14,7 @@ namespace WSCedulones.Services
             try
             {
                 Entities.Cedulones oCedulon = new Entities.Cedulones();
-                Entities.Credito oCredito = Entities.Credito.GetCreditoByPk(legajo);
+                Entities.Credito oCredito = Entities.Credito.GetCreditoByPk(id_credito_materiales);
                 if (oCredito != null)
                 {
 
@@ -57,7 +57,7 @@ namespace WSCedulones.Services
                     oCedulon.nro_badec = oCredito.nro_bad;
                     oCedulon.nro_contrib = 0;
                     oCedulon.nom_badec = oCredito.nombre;
-                    oCedulon.legajo = oCredito.legajo;
+                    oCedulon.id_credito = id_credito_materiales;
                     //////////////////////////////////////
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;
