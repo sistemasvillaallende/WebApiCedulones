@@ -9,6 +9,7 @@ namespace WSCedulones.Services
             int nroProc);
 
         public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonCredito(long nroCedulon);
+        public CEDULON_PRINT_CABECERA_CREDITO getCabeceraPrintCedCredito(long nroCedulon);
         public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonCredito(long nroCedulon);
     }
 }
