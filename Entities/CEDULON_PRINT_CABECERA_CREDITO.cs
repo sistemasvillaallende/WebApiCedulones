@@ -15,6 +15,9 @@ namespace WSCedulones.Entities
         public string CUIT { get; set; }
         public int legajo { get; set; }
         public string domicilio { get; set; }
+        public int cantidadCuotas { get; set; }
+        public decimal presupuesto { get; set; }
+
         public CEDULON_PRINT_CABECERA_CREDITO()
         {
             nroCedulon = 0;
@@ -26,6 +29,8 @@ namespace WSCedulones.Entities
             CUIT = string.Empty;
             legajo = 0;
             domicilio = string.Empty;
+            cantidadCuotas = 0;
+            presupuesto = 0;
         }
 
 
@@ -36,7 +41,7 @@ namespace WSCedulones.Entities
                 CEDULON_PRINT_CABECERA_CREDITO obj = null;
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("SELECT nro_cedulon,  i.id_credito_materiales, vencimiento_2, monto_2,");
-                sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE, i.legajo, i.domicilio");
+                sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE, i.legajo, i.domicilio, i.presupuesto , i.cant_cuotas");
                 sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales ");
                 sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
                 sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
@@ -73,7 +78,11 @@ namespace WSCedulones.Entities
                             if (!dr.IsDBNull(dr.GetOrdinal("legajo")))
                                 obj.legajo = dr.GetInt32(dr.GetOrdinal("legajo"));
                             if (!dr.IsDBNull(dr.GetOrdinal("domicilio")))
-                                obj.domicilio = dr.GetString(dr.GetOrdinal("domicilio"));    
+                                obj.domicilio = dr.GetString(dr.GetOrdinal("domicilio"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("presupuesto")))
+                                obj.presupuesto = dr.GetDecimal(dr.GetOrdinal("presupuesto"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("cant_cuotas")))
+                                obj.cantidadCuotas = dr.GetInt32(dr.GetOrdinal("cant_cuotas"));
                         }
                     }
                 }
