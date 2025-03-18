@@ -85,6 +85,19 @@ namespace WSCedulones.Services
             }
         }
 
+        public CEDULON_PRINT_CABECERA_CREDITO getCabeceraPrintCedCredito(long nroCedulon)
+        {
+            try
+            {
+                return Entities.CEDULON_PRINT_CABECERA_CREDITO.readCredito(nroCedulon);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonCredito(long nroCedulon)
         {
             try

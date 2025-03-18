@@ -39,7 +39,7 @@ namespace WSCedulones.Controllers
         {
             try
             {
-                var CabeceraPrintCedulonCredito = 
+                var CabeceraPrintCedulonCredito =
                     _ICreditoServices.getCabeceraPrintCedulonCredito(nroCedulon);
                 return CabeceraPrintCedulonCredito;
             }
@@ -49,6 +49,24 @@ namespace WSCedulones.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public CEDULON_PRINT_CABECERA_CREDITO getCabeceraPrintCedCredito(long nroCedulon)
+        {
+            try
+            {
+                var CabeceraPrintCedulonCredito =
+                    _ICreditoServices.getCabeceraPrintCedCredito(nroCedulon);
+                return CabeceraPrintCedulonCredito;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        
         [HttpGet]
         public List<CEDULON_PRINT_DETALLE> getDetallePrintCedulonCredito(long nroCedulon)
         {
