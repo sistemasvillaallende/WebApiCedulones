@@ -1,0 +1,1051 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Mi API",
+    "version": "v1"
+  },
+  "paths": {
+    "/Autos/EmitoCedulonAuto": {
+      "post": {
+        "tags": [
+          "Autos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_AUTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_AUTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_AUTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Autos/getCabeceraPrintCedulonAuto": {
+      "get": {
+        "tags": [
+          "Autos"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Autos/getCabeceraPrintCedulonAutoAnual": {
+      "get": {
+        "tags": [
+          "Autos"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Autos/getDetallePrintCedulonAuto": {
+      "get": {
+        "tags": [
+          "Autos"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Autos/getDetallePrintCedulonAutoAnual": {
+      "get": {
+        "tags": [
+          "Autos"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Comercio/EmitoCedulonComercio": {
+      "post": {
+        "tags": [
+          "Comercio"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_COMERCIO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_COMERCIO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_COMERCIO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Comercio/getCabeceraPrintCedulonComercio": {
+      "get": {
+        "tags": [
+          "Comercio"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Comercio/getDetallePrintCedulonComercio": {
+      "get": {
+        "tags": [
+          "Comercio"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Credito/EmitoCedulonCredito": {
+      "post": {
+        "tags": [
+          "Credito"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_CREDITO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_CREDITO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_CREDITO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Credito/getCabeceraPrintCedulonCredito": {
+      "get": {
+        "tags": [
+          "Credito"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Credito/getCabeceraPrintCedCredito": {
+      "get": {
+        "tags": [
+          "Credito"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA_CREDITO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA_CREDITO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA_CREDITO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Credito/getDetallePrintCedulonCredito": {
+      "get": {
+        "tags": [
+          "Credito"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Tasa/EmitoCedulonTasa": {
+      "post": {
+        "tags": [
+          "Tasa"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_TASA"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_TASA"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CEDULON_INSERT_TASA"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Tasa/getCabeceraPrintCedulonTasa": {
+      "get": {
+        "tags": [
+          "Tasa"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Tasa/getCabeceraPrintCedulonTasaAnual": {
+      "get": {
+        "tags": [
+          "Tasa"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CEDULON_PRINT_CABECERA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Tasa/getDetallePrintCedulonTasa": {
+      "get": {
+        "tags": [
+          "Tasa"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Tasa/getDetallePrintCedulonTasaAnual": {
+      "get": {
+        "tags": [
+          "Tasa"
+        ],
+        "parameters": [
+          {
+            "name": "nroCedulon",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEDULON_PRINT_DETALLE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CEDULON_INSERT_AUTO": {
+        "type": "object",
+        "properties": {
+          "dominio": {
+            "type": "string",
+            "nullable": true
+          },
+          "vencimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto_cedulon": {
+            "type": "number",
+            "format": "double"
+          },
+          "listadeuda": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VCtasctes"
+            },
+            "nullable": true
+          },
+          "nroProc": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CEDULON_INSERT_COMERCIO": {
+        "type": "object",
+        "properties": {
+          "legajo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vencimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto_cedulon": {
+            "type": "number",
+            "format": "double"
+          },
+          "listadeuda": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VCtasctes"
+            },
+            "nullable": true
+          },
+          "nroProc": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CEDULON_INSERT_CREDITO": {
+        "type": "object",
+        "properties": {
+          "id_credito_materiales": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vencimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto_cedulon": {
+            "type": "number",
+            "format": "double"
+          },
+          "listadeuda": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VCtasctes"
+            },
+            "nullable": true
+          },
+          "nroProc": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CEDULON_INSERT_TASA": {
+        "type": "object",
+        "properties": {
+          "cir": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sec": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "man": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "par": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "p_h": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vencimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto_cedulon": {
+            "type": "number",
+            "format": "double"
+          },
+          "listadeuda": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VCtasctes"
+            },
+            "nullable": true
+          },
+          "nroProc": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CEDULON_PRINT_CABECERA": {
+        "type": "object",
+        "properties": {
+          "nroCedulon": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "detalle": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "vencimiento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "montoPagar": {
+            "type": "number",
+            "format": "double"
+          },
+          "cuit": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CEDULON_PRINT_CABECERA_CREDITO": {
+        "type": "object",
+        "properties": {
+          "nroCedulon": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "detalle": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "vencimiento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "montoPagar": {
+            "type": "number",
+            "format": "double"
+          },
+          "cuit": {
+            "type": "string",
+            "nullable": true
+          },
+          "legajo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "domicilio": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CEDULON_PRINT_DETALLE": {
+        "type": "object",
+        "properties": {
+          "periodo": {
+            "type": "string",
+            "nullable": true
+          },
+          "concepto": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoPagado": {
+            "type": "number",
+            "format": "double"
+          },
+          "montoOriginal": {
+            "type": "number",
+            "format": "double"
+          },
+          "recargo": {
+            "type": "number",
+            "format": "double"
+          },
+          "descInteres": {
+            "type": "number",
+            "format": "double"
+          },
+          "saldoFavor": {
+            "type": "number",
+            "format": "double"
+          },
+          "nro_transaccion": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VCtasctes": {
+        "type": "object",
+        "properties": {
+          "deudaOriginal": {
+            "type": "number",
+            "format": "double"
+          },
+          "intereses": {
+            "type": "number",
+            "format": "double"
+          },
+          "nro_cedulon_paypertic": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pago_parcial": {
+            "type": "boolean"
+          },
+          "pago_a_cuenta": {
+            "type": "number",
+            "format": "double"
+          },
+          "nro_transaccion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "periodo": {
+            "type": "string",
+            "nullable": true
+          },
+          "importe": {
+            "type": "number",
+            "format": "double"
+          },
+          "fecha_vencimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoria_deuda": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

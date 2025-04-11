@@ -60,18 +60,18 @@ namespace WSCedulones.Entities
 
             string sql = @"		SELECT 
                                      ccm.id_credito_materiales, 
-                                     b.nro_bad, 
-                                     b.nombre, 
+                                     0 AS NRO_BAD, 
+                                     b.APELLIDO + ', ' + b.nombre AS nombre, 
                                      b.CUIT,
                                      CONVERT(varchar(10), ccm.fecha_alta, 104) AS fecha_alta,
-                                     b.NOMBRE_BARRIO, 
-                                     b.NOMBRE_CALLE,
-                                     b.LOCALIDAD, 
-                                     b.COD_POSTAL,
-                                     b.PROVINCIA, 
+                                     '' AS NOMBRE_BARRIO, 
+                                     '' AS NOMBRE_CALLE,
+                                     '' AS LOCALIDAD, 
+                                     0 AS COD_POSTAL,
+                                     '' AS PROVINCIA, 
                                      ccm.per_ultimo AS ultimo_periodo
                                 FROM CM_CREDITO_MATERIALES ccm (nolock)
-                                JOIN BADEC b 
+                                JOIN VECINO_DIGITAL b 
                                     ON ccm.cuit_solicitante = b.CUIT 
                                 WHERE ccm.id_credito_materiales = @id_credito_materiales;";
 
