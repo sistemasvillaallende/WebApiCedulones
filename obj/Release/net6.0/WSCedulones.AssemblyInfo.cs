@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WSCedulones")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b07eefba524504a45665391d7d4b5d0eadae4447")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f45b336165c9c9b062908eca330a7e5295feaf74")]
 [assembly: System.Reflection.AssemblyProductAttribute("WSCedulones")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WSCedulones")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

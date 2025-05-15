@@ -936,6 +936,14 @@
           "domicilio": {
             "type": "string",
             "nullable": true
+          },
+          "cantidadCuotas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "presupuesto": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
