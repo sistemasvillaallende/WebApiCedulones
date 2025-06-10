@@ -34,13 +34,29 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA_CREDITO obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon,  i.id_credito_materiales, vencimiento_2, monto_2,");
-                sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE, i.legajo, i.domicilio");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales ");
-                sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
-                sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
-
+                //StringBuilder sql = new StringBuilder();
+                //sql.AppendLine("SELECT nro_cedulon,  i.id_credito_materiales, vencimiento_2, monto_2,");
+                //sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE, i.legajo, i.domicilio");
+                //sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales ");
+                //sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
+                //sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
+                string sql = @"
+                        SELECT 
+                          nro_cedulon,  
+                          i.id_credito_materiales, 
+                          vencimiento_2, 
+                          monto_2,
+                          ISNULL(v.cuit, ' - ') AS CUIT, 
+                          v.NOMBRE, 
+                          i.legajo, 
+                          i.domicilio
+                        FROM 
+                          CEDULONES2 c2 
+                          INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales 
+                          INNER JOIN VECINO_DIGITAL v ON i.cuit_solicitante=v.CUIT
+                        WHERE 
+                          c2.subsistema = 7 
+                          AND nro_cedulon = @nroCedulon";
 
                 using (SqlConnection con = GetConnection())
                 {
