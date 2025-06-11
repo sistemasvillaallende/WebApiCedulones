@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WSCedulones")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e08fcf77beea25c6ff8f0c400e9301ee62514500")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5fdd0e33e707a9ec67b3f6e44d8e1b5c60b075de")]
 [assembly: System.Reflection.AssemblyProductAttribute("WSCedulones")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WSCedulones")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
