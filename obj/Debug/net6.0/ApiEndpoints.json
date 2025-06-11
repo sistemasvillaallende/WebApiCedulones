@@ -1,0 +1,425 @@
+[
+  {
+    "ContainingType": "WSCedulones.Controllers.AutosController",
+    "Method": "EmitoCedulonAuto",
+    "RelativePath": "Autos/EmitoCedulonAuto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "oCedulon",
+        "Type": "WSCedulones.Entities.CEDULON_INSERT_AUTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.AutosController",
+    "Method": "getCabeceraPrintCedulonAuto",
+    "RelativePath": "Autos/getCabeceraPrintCedulonAuto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.AutosController",
+    "Method": "getCabeceraPrintCedulonAutoAnual",
+    "RelativePath": "Autos/getCabeceraPrintCedulonAutoAnual",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.AutosController",
+    "Method": "getDetallePrintCedulonAuto",
+    "RelativePath": "Autos/getDetallePrintCedulonAuto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WSCedulones.Entities.CEDULON_PRINT_DETALLE, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.AutosController",
+    "Method": "getDetallePrintCedulonAutoAnual",
+    "RelativePath": "Autos/getDetallePrintCedulonAutoAnual",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WSCedulones.Entities.CEDULON_PRINT_DETALLE, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.ComercioController",
+    "Method": "EmitoCedulonComercio",
+    "RelativePath": "Comercio/EmitoCedulonComercio",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "oCedulon",
+        "Type": "WSCedulones.Entities.CEDULON_INSERT_COMERCIO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.ComercioController",
+    "Method": "getCabeceraPrintCedulonComercio",
+    "RelativePath": "Comercio/getCabeceraPrintCedulonComercio",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.ComercioController",
+    "Method": "getDetallePrintCedulonComercio",
+    "RelativePath": "Comercio/getDetallePrintCedulonComercio",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WSCedulones.Entities.CEDULON_PRINT_DETALLE, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.CreditoController",
+    "Method": "EmitoCedulonCredito",
+    "RelativePath": "Credito/EmitoCedulonCredito",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "oCedulon",
+        "Type": "WSCedulones.Entities.CEDULON_INSERT_CREDITO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.CreditoController",
+    "Method": "getCabeceraPrintCedCredito",
+    "RelativePath": "Credito/getCabeceraPrintCedCredito",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA_CREDITO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.CreditoController",
+    "Method": "getCabeceraPrintCedulonCredito",
+    "RelativePath": "Credito/getCabeceraPrintCedulonCredito",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.CreditoController",
+    "Method": "getDetallePrintCedulonCredito",
+    "RelativePath": "Credito/getDetallePrintCedulonCredito",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WSCedulones.Entities.CEDULON_PRINT_DETALLE, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.TasaController",
+    "Method": "EmitoCedulonTasa",
+    "RelativePath": "Tasa/EmitoCedulonTasa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "oCedulon",
+        "Type": "WSCedulones.Entities.CEDULON_INSERT_TASA",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.TasaController",
+    "Method": "getCabeceraPrintCedulonTasa",
+    "RelativePath": "Tasa/getCabeceraPrintCedulonTasa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.TasaController",
+    "Method": "getCabeceraPrintCedulonTasaAnual",
+    "RelativePath": "Tasa/getCabeceraPrintCedulonTasaAnual",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WSCedulones.Entities.CEDULON_PRINT_CABECERA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.TasaController",
+    "Method": "getDetallePrintCedulonTasa",
+    "RelativePath": "Tasa/getDetallePrintCedulonTasa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WSCedulones.Entities.CEDULON_PRINT_DETALLE, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.TasaController",
+    "Method": "getDetallePrintCedulonTasaAnual",
+    "RelativePath": "Tasa/getDetallePrintCedulonTasaAnual",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nroCedulon",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WSCedulones.Entities.CEDULON_PRINT_DETALLE, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WSCedulones.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WSCedulones.WeatherForecast, WSCedulones, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

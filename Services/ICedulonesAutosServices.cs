@@ -1,4 +1,5 @@
-﻿using WSCedulones.Entities;
+﻿using System.Data.SqlClient;
+using WSCedulones.Entities;
 
 namespace WSCedulones.Services
 {

@@ -358,5 +358,221 @@ namespace WSCedulones.Entities
             finally { cn.Close(); }
             return ret;
         }
+
+        public static long InsertCedulon(Entities.Cedulones oCedulon, int nroProcuracion, SqlConnection cn, SqlTransaction trx)
+        {
+            try
+            {
+                StringBuilder strSQL = new StringBuilder();
+                strSQL.AppendLine(@"INSERT INTO Cedulones2 (
+                 nro_cedulon, fecha_emision, subsistema, tipo_cedulon, no_pagado, activo, nro_emision, circunscripcion, seccion, 
+                 manzana, parcela, p_h, periodo, vencimiento_1, monto_1, vencimiento_2, monto_2, contado, cheques, monto_arreglo, 
+                 nro_dom_esp, piso_dpto_esp, local_esp, nom_calle_dom_esp, nom_barrio_dom_esp, ciudad_dom_esp, provincia_dom_esp, 
+                 pais_dom_esp, codigo_postal_dom_esp, nro_badec, nro_contrib, nom_badec, nom_calle_pf, nro_dom_pf, dominio, 
+                 legajo, imprime, tipo_cem, manzana_cem, lote_cem, parcela_cem, nivel_cem, nro_procuracion, id_credito)
+                 VALUES(@nro_cedulon, GETDATE(), @subsistema, @tipo_cedulon, @no_pagado, @activo, @nro_emision, @circunscripcion, 
+                 @seccion, @manzana, @parcela, @p_h, @periodo, 
+                 // @vencimiento_1, 
+                 @monto_1, 
+                 // @vencimiento_2, 
+                 DATEADD(dd,5,GETDATE()), @monto_2, @contado, @cheques, @monto_arreglo, @nro_dom_esp, @piso_dpto_esp, @local_esp, 
+                 @nom_calle_dom_esp, @nom_barrio_dom_esp, @ciudad_dom_esp, @provincia_dom_esp, @pais_dom_esp, @codigo_postal_dom_esp, 
+                 @nro_badec, @nro_contrib, @nom_badec, @nom_calle_pf, @nro_dom_pf, @dominio, @legajo, @imprime, @tipo_cem, @manzana_cem, 
+                 @lote_cem, @parcela_cem, @nivel_cem, @nro_procuracion, @id_credito)");
+
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.Transaction = trx;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = strSQL.ToString();
+                oCedulon.nro_cedulon = DALBase.NewID("Cedulones2", "nro_cedulon", cn, trx);
+
+                cmd.Parameters.AddWithValue("@nro_cedulon", oCedulon.nro_cedulon);
+                //cmd.Parameters.AddWithValue("@fecha_emision", oCedulon.fecha_emision));
+                cmd.Parameters.AddWithValue("@subsistema", oCedulon.subsistema);
+                cmd.Parameters.AddWithValue("@tipo_cedulon", oCedulon.tipo_cedulon);
+                cmd.Parameters.AddWithValue("@no_pagado", oCedulon.no_pagado);
+                cmd.Parameters.AddWithValue("@activo", oCedulon.activo);
+                cmd.Parameters.AddWithValue("@nro_emision", oCedulon.nro_emision);
+                cmd.Parameters.AddWithValue("@circunscripcion", oCedulon.circunscripcion);
+                cmd.Parameters.AddWithValue("@seccion", oCedulon.seccion);
+                cmd.Parameters.AddWithValue("@manzana", oCedulon.manzana);
+                cmd.Parameters.AddWithValue("@parcela", oCedulon.parcela);
+                cmd.Parameters.AddWithValue("@p_h", oCedulon.p_h);
+                cmd.Parameters.AddWithValue("@periodo", oCedulon.periodo);
+                // cmd.Parameters.AddWithValue("@vencimiento_1", oCedulon.vencimiento_1));
+                cmd.Parameters.AddWithValue("@monto_1", oCedulon.monto_1);
+                //cmd.Parameters.AddWithValue("@vencimiento_2", oCedulon.vencimiento_2));
+                cmd.Parameters.AddWithValue("@monto_2", oCedulon.monto_2);
+                cmd.Parameters.AddWithValue("@contado", oCedulon.contado);
+                cmd.Parameters.AddWithValue("@cheques", oCedulon.cheques);
+                cmd.Parameters.AddWithValue("@monto_arreglo", oCedulon.monto_arreglo);
+                cmd.Parameters.AddWithValue("@nro_dom_esp", oCedulon.nro_dom_esp);
+                cmd.Parameters.AddWithValue("@piso_dpto_esp", oCedulon.piso_dpto_esp);
+                cmd.Parameters.AddWithValue("@local_esp", oCedulon.local_esp);
+                cmd.Parameters.AddWithValue("@nom_calle_dom_esp", oCedulon.nom_calle_dom_esp);
+                cmd.Parameters.AddWithValue("@nom_barrio_dom_esp", oCedulon.nom_barrio_dom_esp);
+                cmd.Parameters.AddWithValue("@ciudad_dom_esp", oCedulon.ciudad_dom_esp);
+                cmd.Parameters.AddWithValue("@provincia_dom_esp", oCedulon.provincia_dom_esp);
+                cmd.Parameters.AddWithValue("@pais_dom_esp", oCedulon.pais_dom_esp);
+                cmd.Parameters.AddWithValue("@codigo_postal_dom_esp", oCedulon.codigo_postal_dom_esp);
+                cmd.Parameters.AddWithValue("@nro_badec", oCedulon.nro_badec);
+                cmd.Parameters.AddWithValue("@nro_contrib", oCedulon.nro_contrib);
+                if (oCedulon.nom_badec.Length > 40)
+                    cmd.Parameters.AddWithValue("@nom_badec", oCedulon.nom_badec.Substring(0, 38));
+                else
+                    cmd.Parameters.AddWithValue("@nom_badec", oCedulon.nom_badec); ;
+                cmd.Parameters.AddWithValue("@nom_calle_pf", oCedulon.nom_calle_pf);
+                cmd.Parameters.AddWithValue("@nro_dom_pf", oCedulon.nro_dom_pf);
+                cmd.Parameters.AddWithValue("@dominio", oCedulon.dominio);
+                cmd.Parameters.AddWithValue("@legajo", oCedulon.legajo);
+                cmd.Parameters.AddWithValue("@imprime", oCedulon.imprime);
+                cmd.Parameters.AddWithValue("@tipo_cem", oCedulon.tipo_cem);
+                cmd.Parameters.AddWithValue("@manzana_cem", oCedulon.manzana_cem);
+                cmd.Parameters.AddWithValue("@lote_cem", oCedulon.lote_cem);
+                cmd.Parameters.AddWithValue("@parcela_cem", oCedulon.parcela_cem);
+                cmd.Parameters.AddWithValue("@nivel_cem", oCedulon.nivel_cem);
+                cmd.Parameters.AddWithValue("@nro_procuracion", nroProcuracion);
+                cmd.Parameters.AddWithValue("@id_credito", oCedulon.id_credito);
+                cmd.ExecuteNonQuery();
+                InsertDetalleCedulon(oCedulon, cn, trx);
+                if (nroProcuracion > 0)
+                    InsertProcuracion(oCedulon, nroProcuracion, cn, trx);
+                return oCedulon.nro_cedulon;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in query!" + e.ToString());
+                throw new Exception(e.ToString());
+            }
+
+        }
+        public static void InsertDetalleCedulon(Entities.Cedulones oCedulon, SqlConnection cn, SqlTransaction trx)
+        {
+            try
+            {
+                string strSQL = string.Empty;
+                strSQL = @"set nocount off;
+                           INSERT INTO Deudas_x_cedulon3
+                           (nro_cedulon, nro_transaccion, monto_pagado, descuento_anticipo, 
+                            vencimiento_transaccion, pago_parcial, categoria_deuda)
+                            VALUES(@nro_cedulon, @nro_transaccion, @monto_pagado, @descuento_anticipo,
+                            DATEADD(dd, 5, GETDATE()), @pago_parcial, @categoria_deuda)";
+
+                //@vencimiento_transaccion, @pago_parcial, @categoria_deuda)";
+                decimal descuento = 0;
+                DateTime vencimiento;
+                long nro_cedulon = oCedulon.nro_cedulon;
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = strSQL.ToString();
+                cmd.Transaction = trx;
+                cmd.Parameters.AddWithValue("@nro_cedulon", 0);
+                cmd.Parameters.AddWithValue("@nro_transaccion", 0);
+                cmd.Parameters.AddWithValue("@monto_pagado", 0);
+                cmd.Parameters.AddWithValue("@descuento_anticipo", 0);
+                cmd.Parameters.AddWithValue("@vencimiento_transaccion", null);
+                cmd.Parameters.AddWithValue("@pago_parcial", false);
+                cmd.Parameters.AddWithValue("@categoria_deuda", 0);
+                foreach (var item in oCedulon.lstDeuda)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters["@nro_cedulon"].Value = nro_cedulon;
+                    cmd.Parameters["@nro_transaccion"].Value = item.nro_transaccion;
+                    cmd.Parameters["@monto_pagado"].Value = item.importe;
+                    cmd.Parameters["@descuento_anticipo"].Value = descuento;
+                    cmd.Parameters["@pago_parcial"].Value = item.pago_parcial;
+                    cmd.Parameters["@categoria_deuda"].Value = item.categoria_deuda;
+                    vencimiento = DateTime.Parse(item.fecha_vencimiento);
+
+                    if (item.categoria_deuda != 1)
+                    {
+
+                        if (!DateTime.TryParse(item.fecha_vencimiento, out vencimiento) ||
+                          vencimiento <= new DateTime(1900, 1, 1))
+                        {
+                            vencimiento = DateTime.Now;
+                        }
+                    }
+                    else
+                    {
+                        int yy;
+                        try
+                        {
+                            yy = int.Parse(item.periodo.Substring(0, 4));
+                        }
+                        catch
+                        {
+                            yy = 1999;
+                        }
+
+                        vencimiento = new DateTime(yy, 1, 1);
+                    }
+                    cmd.Parameters["@vencimiento_transaccion"].Value = vencimiento;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in query! " + e.ToString());
+                throw new Exception("Error en detalle de Cedulon! " + e.ToString());
+            }
+        }
+        public static void InsertProcuracion(Entities.Cedulones oCedulon, int nroProcuracion, SqlConnection cn, SqlTransaction trx)
+        {
+            try
+            {
+                string strSQL = string.Empty;
+                strSQL = @"set nocount off;
+                      INSERT INTO PROCURACION_X_CEDULONES
+                        (nro_cedulon, nro_procuracion, nro_transaccion, subsistema,
+                        monto_pagado, descuento_anticipo, categoria_deuda,
+                        vencimiento_transaccion, pagado, usuario)
+                        values
+                        (@nro_cedulon, @nro_procuracion, @nro_transaccion, @subsistema,
+                        @monto_pagado, @descuento_anticipo, @categoria_deuda, DATEADD(dd,5,GETDATE()),
+                        @pagado, @usuario)";
+                decimal descuento = 0;
+                long nro_cedulon = oCedulon.nro_cedulon;
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = strSQL.ToString();
+                cmd.Transaction = trx;
+                cmd.Parameters.AddWithValue("@nro_cedulon", 0);
+                cmd.Parameters.AddWithValue("@nro_procuracion", 0);
+                cmd.Parameters.AddWithValue("@nro_transaccion", 0);
+                cmd.Parameters.AddWithValue("@subsistema", 0);
+                cmd.Parameters.AddWithValue("@monto_pagado", 0);
+                cmd.Parameters.AddWithValue("@descuento_anticipo", 0);
+                cmd.Parameters.AddWithValue("@categoria_deuda", 0);
+                cmd.Parameters.AddWithValue("@vencimiento_transaccion", null);
+                cmd.Parameters.AddWithValue("@pagado", false);
+                cmd.Parameters.AddWithValue("@usuario", string.Empty);
+
+                foreach (var item in oCedulon.lstDeuda)
+                {
+                    cmd.CommandText = strSQL.ToString();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters["@nro_cedulon"].Value = oCedulon.nro_cedulon;
+                    cmd.Parameters["@nro_procuracion"].Value = nroProcuracion;
+                    cmd.Parameters["@nro_transaccion"].Value = item.nro_transaccion;
+                    cmd.Parameters["@subsistema"].Value = oCedulon.subsistema;
+                    cmd.Parameters["@monto_pagado"].Value = item.importe;
+                    cmd.Parameters["@descuento_anticipo"].Value = 0;
+                    cmd.Parameters["@categoria_deuda"].Value = item.categoria_deuda;
+                    cmd.Parameters["@vencimiento_transaccion"].Value = item.fecha_vencimiento;
+                    cmd.Parameters["@pagado"].Value = false;
+                    cmd.Parameters["@usuario"].Value = 7; // reemplazar por usuario real si corresponde
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in query! " + e.ToString());
+                throw new Exception("Error en el InsertProcuracion : " + nroProcuracion.ToString() + ' ' + e.ToString());
+            }
+        }
+
+
+
     }
 }

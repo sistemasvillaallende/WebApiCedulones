@@ -17,6 +17,8 @@ namespace WSCedulones.Entities
         public string domicilio { get; set; }
         public int cantidadCuotas { get; set; }
         public decimal presupuesto { get; set; }
+        public int cantidadCuotas { get; set; }
+        public decimal presupuesto { get; set; }
 
         public CEDULON_PRINT_CABECERA_CREDITO()
         {
@@ -39,12 +41,22 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA_CREDITO obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon,  i.id_credito_materiales, vencimiento_2, monto_2,");
-                sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE, i.legajo, i.domicilio, i.presupuesto , i.cant_cuotas");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales ");
-                sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
-                sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
+                string sql =
+                @"SELECT 
+                    nro_cedulon,  
+                    i.id_credito_materiales, 
+                    vencimiento_2, 
+                    monto_2,
+                    ISNULL(b.cuit, ' - ') AS CUIT,
+                    b.APELLIDO + ', ' + b.NOMBRE AS NOMBRE, 
+                    i.legajo, 
+                    i.domicilio,
+	                i.presupuesto,
+	                i.cant_cuotas AS cantidadCuotas
+                FROM CEDULONES2 c2 
+                    INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales 
+                    INNER JOIN VECINO_DIGITAL b ON i.cuit_solicitante = b.CUIT
+                WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)";
 
 
                 using (SqlConnection con = GetConnection())
@@ -81,8 +93,8 @@ namespace WSCedulones.Entities
                                 obj.domicilio = dr.GetString(dr.GetOrdinal("domicilio"));
                             if (!dr.IsDBNull(dr.GetOrdinal("presupuesto")))
                                 obj.presupuesto = dr.GetDecimal(dr.GetOrdinal("presupuesto"));
-                            if (!dr.IsDBNull(dr.GetOrdinal("cant_cuotas")))
-                                obj.cantidadCuotas = dr.GetInt32(dr.GetOrdinal("cant_cuotas"));
+                            if (!dr.IsDBNull(dr.GetOrdinal("cantidadCuotas")))
+                                obj.cantidadCuotas = dr.GetInt32(dr.GetOrdinal("cantidadCuotas"));
                         }
                     }
                 }

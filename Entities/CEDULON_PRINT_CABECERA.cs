@@ -29,10 +29,10 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, v.DOMINIO, v.MARCA, vencimiento_2, monto_2, v.nombre, ISNULL(v.CUIT, ' - ') as CUIT");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN VEHICULOS v ON c2.dominio = v.DOMINIO");
-                sql.AppendLine("WHERE subsistema=4 AND (nro_cedulon = @nroCedulon)");
+                string sql = @"
+                SELECT nro_cedulon, v.DOMINIO, v.MARCA, vencimiento_2, monto_2, v.nombre, ISNULL(v.CUIT, ' - ') as CUIT
+                FROM CEDULONES2 c2 INNER JOIN VEHICULOS v ON c2.dominio = v.DOMINIO
+                WHERE subsistema=4 AND (nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -72,24 +72,24 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                //sql.AppendLine("SELECT nro_cedulon, v.DOMINIO, v.MARCA, vencimiento_1, monto_1, v.nombre, ISNULL(v.CUIT, ' - ') as CUIT");
-                //sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN VEHICULOS v ON c2.dominio = v.DOMINIO");
-                //sql.AppendLine("WHERE subsistema=4 AND (nro_cedulon = @nroCedulon)");
-                sql.AppendLine("SELECT nro_cedulon, v.DOMINIO, v.MARCA, ");
-                sql.AppendLine("vencimiento = ");
-                sql.AppendLine("CASE");
-                sql.AppendLine("WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN vencimiento_1");
-                sql.AppendLine("ELSE vencimiento_2");
-                sql.AppendLine("END,");
-                sql.AppendLine("monto=");
-                sql.AppendLine("CASE");
-                sql.AppendLine("WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN monto_1");
-                sql.AppendLine("ELSE monto_2");
-                sql.AppendLine("END,");
-                sql.AppendLine("v.nombre, ISNULL(v.CUIT, ' - ') as CUIT");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN VEHICULOS v ON c2.dominio = v.DOMINIO");
-                sql.AppendLine("WHERE subsistema=4 AND (nro_cedulon = @nroCedulon)");
+                string sql = @"
+                //SELECT nro_cedulon, v.DOMINIO, v.MARCA, vencimiento_1, monto_1, v.nombre, ISNULL(v.CUIT, ' - ') as CUIT
+                //FROM CEDULONES2 c2 INNER JOIN VEHICULOS v ON c2.dominio = v.DOMINIO
+                //WHERE subsistema=4 AND (nro_cedulon = @nroCedulon)
+                SELECT nro_cedulon, v.DOMINIO, v.MARCA, 
+                vencimiento = 
+                CASE
+                WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN vencimiento_1
+                ELSE vencimiento_2
+                END,
+                monto=
+                CASE
+                WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN monto_1
+                ELSE monto_2
+                END,
+                v.nombre, ISNULL(v.CUIT, ' - ') as CUIT
+                FROM CEDULONES2 c2 INNER JOIN VEHICULOS v ON c2.dominio = v.DOMINIO
+                WHERE subsistema=4 AND (nro_cedulon = @nroCedulon)";
                 using (SqlConnection con = GetConnection())
                 {
                     SqlCommand cmd = con.CreateCommand();
@@ -128,15 +128,15 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, i.Tipo, i.Manzana, i.Lote, i.parcela,");
-                sql.AppendLine("i.Nivel, vencimiento_2, monto_2, i.Nom_titular1 + ' - ' + i.Nom_titular2 AS NOMBRE, ISNULL(i.Cuit, ' - ') AS CUIT,");
-                sql.AppendLine("c.NOM_CALLE + ' ' + CONVERT(VARCHAR(100), i.Nro_dom_esp) + ' - ' +  b.NOM_BARRIO AS direccion");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CEMENTERIO i ON c2.tipo_cem = i.Tipo AND");
-                sql.AppendLine("c2.manzana_cem = i.Manzana AND c2.lote_cem = i.Lote AND c2.parcela_cem = i.parcela AND c2.nivel_cem = i.Nivel");
-                sql.AppendLine("FULL JOIN BARRIOS b ON i.Cod_barrio_dom_esp = b.COD_BARRIO");
-                sql.AppendLine("FULL JOIN CALLES c ON c.COD_CALLE = i.Cod_calle_dom_esp");
-                sql.AppendLine("WHERE subsistema=5 AND (nro_cedulon = @nroCedulon)");
+                string sql = @"
+                SELECT nro_cedulon, i.Tipo, i.Manzana, i.Lote, i.parcela,
+                i.Nivel, vencimiento_2, monto_2, i.Nom_titular1 + ' - ' + i.Nom_titular2 AS NOMBRE, ISNULL(i.Cuit, ' - ') AS CUIT,
+                c.NOM_CALLE + ' ' + CONVERT(VARCHAR(100), i.Nro_dom_esp) + ' - ' +  b.NOM_BARRIO AS direccion
+                FROM CEDULONES2 c2 INNER JOIN CEMENTERIO i ON c2.tipo_cem = i.Tipo AND
+                c2.manzana_cem = i.Manzana AND c2.lote_cem = i.Lote AND c2.parcela_cem = i.parcela AND c2.nivel_cem = i.Nivel
+                FULL JOIN BARRIOS b ON i.Cod_barrio_dom_esp = b.COD_BARRIO
+                FULL JOIN CALLES c ON c.COD_CALLE = i.Cod_calle_dom_esp
+                WHERE subsistema=5 AND (nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -187,15 +187,15 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, i.circunscripcion, i.seccion, i.manzana, i.parcela,");
-                sql.AppendLine("i.p_h, vencimiento_2, monto_2, i.Nombre, ISNULL(i.cuil, ' - ') AS CUIT,");
-                sql.AppendLine("c.NOM_CALLE + ' ' + CONVERT(VARCHAR(100), i.nro_dom_pf) + ' - ' +  b.NOM_BARRIO AS direccion");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN INMUEBLES i ON c2.circunscripcion = i.circunscripcion AND");
-                sql.AppendLine("c2.seccion = i.seccion AND c2.manzana = i.manzana AND c2.parcela = i.parcela AND c2.p_h = i.p_h");
-                sql.AppendLine("INNER JOIN BARRIOS b ON i.cod_barrio = b.COD_BARRIO");
-                sql.AppendLine("INNER JOIN CALLES c ON c.COD_CALLE = i.cod_calle_pf");
-                sql.AppendLine("WHERE subsistema=1 AND (nro_cedulon = @nroCedulon)");
+                string sql = @"
+                SELECT nro_cedulon, i.circunscripcion, i.seccion, i.manzana, i.parcela,
+                i.p_h, vencimiento_2, monto_2, i.Nombre, ISNULL(i.cuil, ' - ') AS CUIT,
+                c.NOM_CALLE + ' ' + CONVERT(VARCHAR(100), i.nro_dom_pf) + ' - ' +  b.NOM_BARRIO AS direccion
+                FROM CEDULONES2 c2 INNER JOIN INMUEBLES i ON c2.circunscripcion = i.circunscripcion AND
+                c2.seccion = i.seccion AND c2.manzana = i.manzana AND c2.parcela = i.parcela AND c2.p_h = i.p_h
+                INNER JOIN BARRIOS b ON i.cod_barrio = b.COD_BARRIO
+                INNER JOIN CALLES c ON c.COD_CALLE = i.cod_calle_pf
+                WHERE subsistema=1 AND (nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -241,26 +241,26 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, i.circunscripcion, i.seccion, i.manzana, i.parcela,");
-                sql.AppendLine("i.p_h,");
-                sql.AppendLine("vencimiento = ");
-                sql.AppendLine("CASE");
-                sql.AppendLine("WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN vencimiento_1");
-                sql.AppendLine("ELSE vencimiento_2");
-                sql.AppendLine("END,");
-                sql.AppendLine("monto=");
-                sql.AppendLine("CASE");
-                sql.AppendLine("WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN monto_1");
-                sql.AppendLine("ELSE monto_2");
-                sql.AppendLine("END,");
-                sql.AppendLine("i.Nombre, ISNULL(i.cuil, ' - ') AS CUIT,");
-                sql.AppendLine("c.NOM_CALLE + ' ' + CONVERT(VARCHAR(100), i.nro_dom_pf) + ' - ' +  b.NOM_BARRIO AS direccion");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN INMUEBLES i ON c2.circunscripcion = i.circunscripcion AND");
-                sql.AppendLine("c2.seccion = i.seccion AND c2.manzana = i.manzana AND c2.parcela = i.parcela AND c2.p_h = i.p_h");
-                sql.AppendLine("INNER JOIN BARRIOS b ON i.cod_barrio = b.COD_BARRIO");
-                sql.AppendLine("INNER JOIN CALLES c ON c.COD_CALLE = i.cod_calle_pf");
-                sql.AppendLine("WHERE subsistema=1 AND (nro_cedulon = @nroCedulon)");
+                string sql = @"
+                SELECT nro_cedulon, i.circunscripcion, i.seccion, i.manzana, i.parcela,
+                i.p_h,
+                vencimiento = 
+                CASE
+                WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN vencimiento_1
+                ELSE vencimiento_2
+                END,
+                monto=
+                CASE
+                WHEN CAST(GETDATE() AS date) <= CAST(vencimiento_1 AS date) THEN monto_1
+                ELSE monto_2
+                END,
+                i.Nombre, ISNULL(i.cuil, ' - ') AS CUIT,
+                c.NOM_CALLE + ' ' + CONVERT(VARCHAR(100), i.nro_dom_pf) + ' - ' +  b.NOM_BARRIO AS direccion
+                FROM CEDULONES2 c2 INNER JOIN INMUEBLES i ON c2.circunscripcion = i.circunscripcion AND
+                c2.seccion = i.seccion AND c2.manzana = i.manzana AND c2.parcela = i.parcela AND c2.p_h = i.p_h
+                INNER JOIN BARRIOS b ON i.cod_barrio = b.COD_BARRIO
+                INNER JOIN CALLES c ON c.COD_CALLE = i.cod_calle_pf
+                WHERE subsistema=1 AND (nro_cedulon = @nroCedulon)";
 
 
                 using (SqlConnection con = GetConnection())
@@ -308,12 +308,19 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, i.legajo, vencimiento_2, monto_2, i.nom_fantasia,");
-                sql.AppendLine("ISNULL(i.nro_cuit, ' - ') AS CUIT, b.NOMBRE");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN INDYCOM i ON c2.legajo = i.legajo");
-                sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
-                sql.AppendLine("WHERE c2.subsistema=3 AND (nro_cedulon = @nroCedulon)");
+                string sql =
+                @"SELECT 
+                    nro_cedulon, 
+                    i.legajo, 
+                    vencimiento_2, 
+                    monto_2, 
+                    i.nom_fantasia,
+                    ISNULL(i.nro_cuit, ' - ') AS CUIT, 
+                    b.NOMBRE
+                FROM CEDULONES2 c2 
+                    INNER JOIN INDYCOM i ON c2.legajo = i.legajo
+                    INNER JOIN VECINO_DIGITAL b ON i.nro_cuit = b.CUIT
+                WHERE c2.subsistema=3 AND (nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -361,14 +368,14 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT c.nro_cedulon,");
-                sql.AppendLine("c.vencimiento_2, c.monto_2, F.NOMBRE, ISNULL(F.CUIT, ' - ') AS CUIT, cat.des_categoria, f.observaciones");
-                sql.AppendLine("FROM CEDULONES2 c");
-                sql.AppendLine("join DEUDAS_X_CEDULON3 B ON B.nro_cedulon = C.nro_cedulon");
-                sql.AppendLine("JOIN FACTURACION F ON B.nro_transaccion = F.nro_transaccion");
-                sql.AppendLine("JOIN CATE_DEUDA_FACTU cat ON cat.cod_categoria = f.categoria_deuda");
-                sql.AppendLine("WHERE c.subsistema=2 AND (c.nro_cedulon = @nroCedulon)");
+                string sql = @"
+                SELECT c.nro_cedulon,
+                c.vencimiento_2, c.monto_2, F.NOMBRE, ISNULL(F.CUIT, ' - ') AS CUIT, cat.des_categoria, f.observaciones
+                FROM CEDULONES2 c
+                join DEUDAS_X_CEDULON3 B ON B.nro_cedulon = C.nro_cedulon
+                JOIN FACTURACION F ON B.nro_transaccion = F.nro_transaccion
+                JOIN CATE_DEUDA_FACTU cat ON cat.cod_categoria = f.categoria_deuda
+                WHERE c.subsistema=2 AND (c.nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -411,13 +418,13 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon, c.circunscripcion, c.seccion, c.manzana, c.parcela,");
-                sql.AppendLine("c.p_h, c.vencimiento_2, c.monto_2, b.NOMBRE, ISNULL(B.CUIT, ' - ') AS CUIT");
-                sql.AppendLine("FROM CEDULONES2 c");
-                sql.AppendLine("join Badec b on");
-                sql.AppendLine("c.nro_badec = b.nro_bad");
-                sql.AppendLine("WHERE c.tipo_cedulon=5 AND c.subsistema=6 AND (c.nro_cedulon = @nroCedulon)");
+        string sql = @"
+                SELECT nro_cedulon, c.circunscripcion, c.seccion, c.manzana, c.parcela,
+                c.p_h, c.vencimiento_2, c.monto_2, b.NOMBRE, ISNULL(B.CUIT, ' - ') AS CUIT
+                FROM CEDULONES2 c
+                join Badec b on
+                c.nro_badec = b.nro_bad
+                WHERE c.tipo_cedulon=5 AND c.subsistema=6 AND (c.nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -463,14 +470,14 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT DISTINCT c.nro_cedulon, A.CLAVE_SUBSISTEMA AS DOMINIO,");
-                sql.AppendLine("c.vencimiento_2, c.monto_2, b.NOMBRE, ISNULL(B.CUIT, ' - ') AS CUIT");
-                sql.AppendLine("FROM CEDULONES2 c");
-                sql.AppendLine("join Badec b on");
-                sql.AppendLine("c.nro_badec = b.nro_bad");
-                sql.AppendLine("INNER JOIN SUMARIOS A ON A.DOMINIO=c.dominio");
-                sql.AppendLine("WHERE c.tipo_cedulon=5 AND c.subsistema=6 AND (c.nro_cedulon = @nroCedulon)");
+                string sql = @"
+                SELECT DISTINCT c.nro_cedulon, A.CLAVE_SUBSISTEMA AS DOMINIO,
+                c.vencimiento_2, c.monto_2, b.NOMBRE, ISNULL(B.CUIT, ' - ') AS CUIT
+                FROM CEDULONES2 c
+                join Badec b on
+                c.nro_badec = b.nro_bad
+                INNER JOIN SUMARIOS A ON A.DOMINIO=c.dominio
+                WHERE c.tipo_cedulon=5 AND c.subsistema=6 AND (c.nro_cedulon = @nroCedulon)";
 
                 using (SqlConnection con = GetConnection())
                 {
@@ -512,12 +519,20 @@ namespace WSCedulones.Entities
             try
             {
                 CEDULON_PRINT_CABECERA obj = null;
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT nro_cedulon,  i.id_credito_materiales, vencimiento_2, monto_2,");
-                sql.AppendLine("ISNULL(b.cuit, ' - ') AS CUIT, b.NOMBRE");
-                sql.AppendLine("FROM CEDULONES2 c2 INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales ");
-                sql.AppendLine("INNER JOIN BADEC b ON c2.nro_badec = b.NRO_BAD");
-                sql.AppendLine("WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)");
+                string sql =
+                    @"SELECT 
+                    nro_cedulon,  
+                    i.id_credito_materiales, 
+                    vencimiento_2, 
+                    monto_2,
+                    ISNULL(b.cuit, ' - ') AS CUIT,
+                    b.APELLIDO + ', ' + b.NOMBRE AS NOMBRE, 
+                    i.legajo, 
+                    i.domicilio
+                FROM CEDULONES2 c2 
+                    INNER JOIN CM_CREDITO_MATERIALES i ON c2.id_credito = i.id_credito_materiales 
+                    INNER JOIN VECINO_DIGITAL b ON i.cuit_solicitante = b.CUIT
+                WHERE c2.subsistema=7 AND (nro_cedulon = @nroCedulon)";
 
 
                 using (SqlConnection con = GetConnection())
