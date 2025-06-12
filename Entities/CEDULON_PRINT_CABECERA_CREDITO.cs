@@ -17,8 +17,6 @@ namespace WSCedulones.Entities
         public string domicilio { get; set; }
         public int cantidadCuotas { get; set; }
         public decimal presupuesto { get; set; }
-        public int cantidadCuotas { get; set; }
-        public decimal presupuesto { get; set; }
 
         public CEDULON_PRINT_CABECERA_CREDITO()
         {
