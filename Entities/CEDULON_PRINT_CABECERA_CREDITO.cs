@@ -17,6 +17,7 @@ namespace WSCedulones.Entities
         public string domicilio { get; set; }
         public int cantidadCuotas { get; set; }
         public decimal presupuesto { get; set; }
+
         public CEDULON_PRINT_CABECERA_CREDITO()
         {
             nroCedulon = 0;
@@ -28,6 +29,8 @@ namespace WSCedulones.Entities
             CUIT = string.Empty;
             legajo = 0;
             domicilio = string.Empty;
+            cantidadCuotas = 0;
+            presupuesto = 0;
         }
 
 

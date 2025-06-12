@@ -1,4 +1,6 @@
-﻿using WSCedulones.Entities;
+﻿using System.Data.SqlClient;
+using System.Data;
+using WSCedulones.Entities;
 
 namespace WSCedulones.Services
 {
@@ -6,7 +8,7 @@ namespace WSCedulones.Services
     {
         public long EmitoCedulonVehiculo(string dominio, string vencimiento, decimal monto_cedulon, List<VCtasctes> Listadeuda, int nroProc, int tipoCedulon, string periodo)
         {
-            long ret = 0;
+            long nro_cedulon = 0;
             try
             {
                 Entities.Cedulones oCedulon = new Entities.Cedulones();
@@ -64,19 +66,32 @@ namespace WSCedulones.Services
 
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;
-                    ret = Entities.Cedulones.insert(oCedulon, nroProc);
-                    //b.nro_cedulon = b.nro_cedulon;
-                    //oCedulon. = true;
-                    //i = null;
-                    //return b.nro_cedulon;
+                    //ret = Entities.Cedulones.insert(oCedulon, nroProc);
+                    //*******************************************************************//
+                    //Junio 2025
+                    //Uso Nuevo Metodo de InsertCedulon
+                    using SqlConnection cn = DALBase.GetConnectionSIIMVA();
+                    cn.Open();
+                    using SqlTransaction trx = cn.BeginTransaction();
+                    try
+                    {
+                        nro_cedulon = Cedulones.InsertCedulon(oCedulon, nroProc, cn, trx);
+                        trx.Commit();
+                    }
+                    catch
+                    {
+                        trx.Rollback();
+                        throw;
+                    }
                 }
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message + "Error al generar el cedulon!, transaction rolled back.");
+                throw new Exception(e.Message + "Error al generar el Cedulon!, transaction rolled back.");
             }
-            return ret;
+            return nro_cedulon;
         }
+
         public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonAuto(long nroCedulon)
         {
             try
