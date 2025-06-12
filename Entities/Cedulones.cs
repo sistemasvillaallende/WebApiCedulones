@@ -301,8 +301,8 @@ namespace WSCedulones.Entities
                     strSQL.AppendLine("@nro_transaccion,");
                     strSQL.AppendLine("@monto_pagado,");
                     strSQL.AppendLine("@descuento_anticipo,");
-                    //strSQL.AppendLine("@vencimiento_transaccion,");
-                    strSQL.AppendLine("DATEADD(dd,5,GETDATE()),");
+                    strSQL.AppendLine("@vencimiento_transaccion,");
+                    //strSQL.AppendLine("DATEADD(dd,5,GETDATE()),");
                     strSQL.AppendLine("0,");
                     strSQL.AppendLine("@categoria_deuda)");
 
@@ -310,7 +310,7 @@ namespace WSCedulones.Entities
 
                     cmd.Parameters["@nro_transaccion"].Value = oCedulon.lstDeuda[i].nro_transaccion;
                     cmd.Parameters["@monto_pagado"].Value = oCedulon.lstDeuda[i].importe;
-                    //cmd.Parameters["@vencimiento_transaccion"].Value = oCedulon.lstDeuda[i].fecha_vencimiento;
+                    cmd.Parameters["@vencimiento_transaccion"].Value = oCedulon.lstDeuda[i].fecha_vencimiento;
                     cmd.Parameters["@categoria_deuda"].Value = oCedulon.lstDeuda[i].categoria_deuda;
                     cmd.CommandText = strSQL.ToString();
                     cmd.ExecuteNonQuery();
