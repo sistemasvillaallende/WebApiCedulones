@@ -7,7 +7,7 @@
         private decimal _importe = 0;
         private string _fecha_vencimiento = "";
         private Int32 _categoria_deuda = 0;
-
+        
         public decimal deudaOriginal { get; set; }
         public decimal intereses { get; set; }
         public int nro_cedulon_paypertic { get; set; }
@@ -59,7 +59,8 @@
             deudaOriginal = 0;
             intereses = 0;
             nro_cedulon_paypertic = 0;
-
+            pago_parcial = false;
+            pago_a_cuenta = 0;
         }
 
         public VCtasctes(Int32 nro_transaccion, string periodo, decimal importe, string fecha_vencimiento, Int32 categoria_deuda)
