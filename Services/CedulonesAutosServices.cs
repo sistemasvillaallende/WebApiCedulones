@@ -6,7 +6,8 @@ namespace WSCedulones.Services
 {
     public class CedulonesAutosServices : ICedulonesAutosServices
     {
-        public long EmitoCedulonVehiculo(string dominio, string vencimiento, decimal monto_cedulon, List<VCtasctes> Listadeuda, int nroProc, int tipoCedulon, string periodo)
+        public long EmitoCedulonVehiculo(string dominio, string vencimiento,
+            decimal monto_cedulon, List<VCtasctes> Listadeuda, int nroProc, int tipoCedulon, string periodo)
         {
             long nro_cedulon = 0;
             try
@@ -37,8 +38,7 @@ namespace WSCedulones.Services
                     oCedulon.contado = 0;
                     oCedulon.cheques = 0;
                     oCedulon.monto_arreglo = 0;
-                    oCedulon.nro_decreto = "";
-                    //////////////////////////////////
+                    //oCedulon.nro_decreto = null;
                     //Domicilio postal////////////////////
                     oCedulon.nro_dom_esp = oAuto.nro_dom_esp;
                     oCedulon.piso_dpto_esp = oAuto.piso_dpto_esp;
@@ -63,7 +63,6 @@ namespace WSCedulones.Services
                     //b.lote_cem = lote_cem;
                     //b.parcela_cem = parcela_cem;
                     //b.nivel_cem = nivel_cem;
-
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;
                     //ret = Entities.Cedulones.insert(oCedulon, nroProc);
@@ -84,12 +83,12 @@ namespace WSCedulones.Services
                         throw;
                     }
                 }
+                return nro_cedulon;
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message + "Error al generar el Cedulon!, transaction rolled back.");
             }
-            return nro_cedulon;
         }
 
         public CEDULON_PRINT_CABECERA getCabeceraPrintCedulonAuto(long nroCedulon)

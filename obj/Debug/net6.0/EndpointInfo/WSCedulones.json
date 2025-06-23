@@ -989,6 +989,22 @@
       "VCtasctes": {
         "type": "object",
         "properties": {
+          "nro_transaccion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "periodo": {
+            "type": "string",
+            "nullable": true
+          },
+          "importe": {
+            "type": "number",
+            "format": "double"
+          },
+          "fecha_vencimiento": {
+            "type": "string",
+            "nullable": true
+          },
           "deudaOriginal": {
             "type": "number",
             "format": "double"
@@ -1007,22 +1023,6 @@
           "pago_a_cuenta": {
             "type": "number",
             "format": "double"
-          },
-          "nro_transaccion": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "periodo": {
-            "type": "string",
-            "nullable": true
-          },
-          "importe": {
-            "type": "number",
-            "format": "double"
-          },
-          "fecha_vencimiento": {
-            "type": "string",
-            "nullable": true
           },
           "categoria_deuda": {
             "type": "integer",

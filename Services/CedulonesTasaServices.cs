@@ -1,4 +1,5 @@
-﻿using WSCedulones.Entities;
+﻿using System.Data.SqlClient;
+using WSCedulones.Entities;
 
 namespace WSCedulones.Services
 {
@@ -8,19 +9,20 @@ namespace WSCedulones.Services
             string vencimiento, decimal monto_cedulon, List<Entities.VCtasctes> Listadeuda,
             int nroProc, int tipoCedulon, string periodo)
         {
+            long nro_cedulon = 0;
             try
             {
                 //DateTimeFormatInfo culturaFecArgentina = new CultureInfo("es-AR", false).DateTimeFormat;
                 //DateTime f = Convert.ToDateTime(vencimiento, culturaFecArgentina);
                 //vencimiento = f.ToShortDateString();
 
-                long ret = 0;
+                //long ret = 0;
                 Entities.Cedulones oCedulon = new Entities.Cedulones();
                 Entities.Inmuebles oInmueble = Entities.Inmuebles.getInmuebleByPk(cir, sec, man, par, p_h);
                 if (oInmueble != null)
                 {
                     //oCedulon.nro_cedulon = nro_cedulon;
-                    oCedulon.fecha_emision = DateTime.Now.ToString("YYYYMMDD HH:mm:ss");
+                    oCedulon.fecha_emision = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     oCedulon.subsistema = 1;
                     //TIPO_CEDULON :
                     //1-CEDULON ANUAL
@@ -41,13 +43,14 @@ namespace WSCedulones.Services
                     oCedulon.periodo = periodo;
                     oCedulon.vencimiento_1 = null;
                     oCedulon.monto_1 = 0;
-                    oCedulon.vencimiento_2 = DateTime.Now.AddDays(5).ToShortDateString();
+                    oCedulon.vencimiento_2 = vencimiento; 
+                        //DateTime.Now.AddDays(1).ToShortDateString();
                     oCedulon.monto_2 = monto_cedulon;
                     oCedulon.contado = 0;
                     oCedulon.cheques = 0;
                     oCedulon.monto_arreglo = 0;
-                    oCedulon.nro_decreto = "";
-
+                    //oCedulon.nro_decreto = null;
+                    /////////////////////////////////
                     oCedulon.nro_dom_esp = oInmueble.nro_dom_esp;
                     oCedulon.piso_dpto_esp = oInmueble.piso_dpto_esp;
                     oCedulon.local_esp = "";
@@ -62,11 +65,29 @@ namespace WSCedulones.Services
                     oCedulon.nom_badec = oInmueble.nombre;
                     oCedulon.nom_calle_pf = oInmueble.nom_calle_pf;
                     oCedulon.nro_dom_pf = oInmueble.nro_dom_pf;
-                    oCedulon.lstDeuda = Listadeuda;
-                    ret = Entities.Cedulones.insert(oCedulon, nroProc);
+                    //////////////////////////////////////
+                    oCedulon.mNewRecord = true;
+                    oCedulon.lstDeuda = Listadeuda;                    
+                    //ret = Entities.Cedulones.insert(oCedulon, nroProc);
+                    //*******************************************************************//
+                    //Junio 2025
+                    //Uso Nuevo Metodo de InsertCedulon
+                    using SqlConnection cn = DALBase.GetConnectionSIIMVA();
+                    cn.Open();
+                    using SqlTransaction trx = cn.BeginTransaction();
+                    try
+                    {
+                        nro_cedulon = Cedulones.InsertCedulon(oCedulon, nroProc, cn, trx);
+                        trx.Commit();
+                    }
+                    catch
+                    {
+                        trx.Rollback();
+                        throw;
+                    }
 
                 }
-                return ret;
+                return nro_cedulon;
             }
             catch (Exception)
             {

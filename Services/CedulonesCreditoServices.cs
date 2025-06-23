@@ -1,3 +1,4 @@
+using System.Data.SqlClient;
 using System.Globalization;
 using WSCedulones.Entities;
 
@@ -10,7 +11,7 @@ namespace WSCedulones.Services
             decimal monto_cedulon, List<Entities.VCtasctes> Listadeuda,
             int nroProc)
         {
-            long ret = 0;
+            long nro_cedulon = 0;
             try
             {
                 Entities.Cedulones oCedulon = new Entities.Cedulones();
@@ -42,7 +43,7 @@ namespace WSCedulones.Services
                     oCedulon.contado = 0;
                     oCedulon.cheques = 0;
                     oCedulon.monto_arreglo = 0;
-                    oCedulon.nro_decreto = "";
+                    //oCedulon.nro_decreto = null;
                     //////////////////////////////////
                     //Domicilio postal////////////////////
                     oCedulon.nro_dom_esp = oCredito.nro_dom_esp;
@@ -61,14 +62,27 @@ namespace WSCedulones.Services
                     //////////////////////////////////////
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;
-                    ret = Entities.Cedulones.insert(oCedulon, nroProc);
+                    //ret = Entities.Cedulones.insert(oCedulon, nroProc);
+                    using SqlConnection cn = DALBase.GetConnectionSIIMVA();
+                    cn.Open();
+                    using SqlTransaction trx = cn.BeginTransaction();
+                    try
+                    {
+                        nro_cedulon = Cedulones.InsertCedulon(oCedulon, nroProc, cn, trx);
+                        trx.Commit();
+                    }
+                    catch
+                    {
+                        trx.Rollback();
+                        throw;
+                    }
                 }
+                return nro_cedulon;
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message + "Error al generar el cedulon!, transaction rolled back.");
-            }
-            return ret;
+            }           
         }
 
 
