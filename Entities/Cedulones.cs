@@ -306,8 +306,8 @@ namespace WSCedulones.Entities
                     strSQL.AppendLine("@nro_transaccion,");
                     strSQL.AppendLine("@monto_pagado,");
                     strSQL.AppendLine("@descuento_anticipo,");
-                    strSQL.AppendLine("@vencimiento_transaccion,");
-                    //strSQL.AppendLine("DATEADD(dd,5,GETDATE()),");
+                    //strSQL.AppendLine("@vencimiento_transaccion,");
+                    strSQL.AppendLine("DATEADD(dd,5,GETDATE()),");
                     strSQL.AppendLine("0,");
                     strSQL.AppendLine("@categoria_deuda)");
 
@@ -329,8 +329,8 @@ namespace WSCedulones.Entities
                         strSQL.AppendLine("vencimiento_transaccion, pagado, usuario)");
                         strSQL.AppendLine("values");
                         strSQL.AppendLine("(@nro_cedulon, @nro_procuracion, @nro_transaccion, @subsistema,");
-                        strSQL.AppendLine("@monto_pagado, @descuento_anticipo, @categoria_deuda, @vencimiento_transaccion,");
-                        //strSQL.AppendLine("@monto_pagado, @descuento_anticipo, @categoria_deuda, DATEADD(dd,5,GETDATE()),");
+                        //strSQL.AppendLine("@monto_pagado, @descuento_anticipo, @categoria_deuda, @vencimiento_transaccion,");
+                        strSQL.AppendLine("@monto_pagado, @descuento_anticipo, @categoria_deuda, DATEADD(dd,5,GETDATE()),");
                         strSQL.AppendLine("@pagado, @usuario)");
 
                         cmd.CommandText = strSQL.ToString();

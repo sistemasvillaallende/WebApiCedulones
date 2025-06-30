@@ -62,20 +62,20 @@ namespace WSCedulones.Services
                     //////////////////////////////////////
                     oCedulon.mNewRecord = true;
                     oCedulon.lstDeuda = Listadeuda;
-                    //ret = Entities.Cedulones.insert(oCedulon, nroProc);
-                    using SqlConnection cn = DALBase.GetConnectionSIIMVA();
-                    cn.Open();
-                    using SqlTransaction trx = cn.BeginTransaction();
-                    try
-                    {
-                        nro_cedulon = Cedulones.InsertCedulon(oCedulon, nroProc, cn, trx);
-                        trx.Commit();
-                    }
-                    catch
-                    {
-                        trx.Rollback();
-                        throw;
-                    }
+                    nro_cedulon = Entities.Cedulones.insert(oCedulon, nroProc);
+                    //using SqlConnection cn = DALBase.GetConnectionSIIMVA();
+                    //cn.Open();
+                    //using SqlTransaction trx = cn.BeginTransaction();
+                    //try
+                    //{
+                    //    nro_cedulon = Cedulones.InsertCedulon(oCedulon, nroProc, cn, trx);
+                    //    trx.Commit();
+                    //}
+                    //catch
+                    //{
+                    //    trx.Rollback();
+                    //    throw;
+                    //}
                 }
                 return nro_cedulon;
             }
