@@ -76,20 +76,20 @@ namespace WSCedulones.Entities
             //                    WHERE ccm.id_credito_materiales = @id_credito_materiales";
 
             string sql = @"		
-                SELECT 
+                  SELECT 
                      ccm.id_credito_materiales, 
-                     b.nro_bad, 
+                     1 AS CUIT1, 
                      b.nombre, 
                      b.CUIT,
                      CONVERT(varchar(10), ccm.fecha_alta, 104) AS fecha_alta,
-                     b.NOMBRE_BARRIO, 
-                     b.NOMBRE_CALLE,
+                     b.DIRECCION , 
+                     b.DIRECCION ,
                      b.LOCALIDAD, 
-                     b.COD_POSTAL,
-                     b.PROVINCIA, 
+                     CAST(b.COD_POSTAL AS int) AS COD_POSTAL,
+                     b.DESC_PROVINCIA , 
                      ccm.per_ultimo AS ultimo_periodo
                 FROM CM_CREDITO_MATERIALES ccm (nolock)
-                JOIN BADEC b 
+                JOIN VECINO_DIGITAL b 
                     ON ccm.cuit_solicitante = b.CUIT 
                 WHERE ccm.id_credito_materiales= @id_credito_materiales";
 
@@ -115,14 +115,14 @@ namespace WSCedulones.Entities
                     oCredito = new Entities.Credito();
 
                     if (!dr.IsDBNull(dr.GetOrdinal("id_credito_materiales"))) { oCredito.id_credito = dr.GetInt32(dr.GetOrdinal("id_credito_materiales")); }
-                    if (!dr.IsDBNull(dr.GetOrdinal("nro_bad"))) { oCredito.nro_bad = dr.GetInt32(dr.GetOrdinal("nro_bad")); }
+                    if (!dr.IsDBNull(dr.GetOrdinal("CUIT1"))) { oCredito.nro_bad = dr.GetInt32(dr.GetOrdinal("CUIT1")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nombre"))) { oCredito.nombre = dr.GetString(dr.GetOrdinal("nombre")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("CUIT"))) { oCredito.nro_cuit = dr.GetString(dr.GetOrdinal("CUIT")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("fecha_alta"))) { oCredito.fecha_alta = dr.GetString(dr.GetOrdinal("fecha_alta")); }
-                    if (!dr.IsDBNull(dr.GetOrdinal("NOMBRE_BARRIO"))) { oCredito.nom_barrio_dom_esp = dr.GetString(dr.GetOrdinal("NOMBRE_BARRIO")); }
-                    if (!dr.IsDBNull(dr.GetOrdinal("NOMBRE_CALLE"))) { oCredito.nom_calle_dom_esp = dr.GetString(dr.GetOrdinal("NOMBRE_CALLE")); }
+                    if (!dr.IsDBNull(dr.GetOrdinal("DIRECCION"))) { oCredito.nom_barrio_dom_esp = dr.GetString(dr.GetOrdinal("DIRECCION")); }
+                    if (!dr.IsDBNull(dr.GetOrdinal("DIRECCION"))) { oCredito.nom_calle_dom_esp = dr.GetString(dr.GetOrdinal("DIRECCION")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("COD_POSTAL"))) { oCredito.cod_postal_dom_esp = dr.GetInt32(dr.GetOrdinal("COD_POSTAL")); }
-                    if (!dr.IsDBNull(dr.GetOrdinal("PROVINCIA"))) { oCredito.provincia_dom_esp = dr.GetString(dr.GetOrdinal("PROVINCIA")); }
+                    if (!dr.IsDBNull(dr.GetOrdinal("DESC_PROVINCIA"))) { oCredito.provincia_dom_esp = dr.GetString(dr.GetOrdinal("DESC_PROVINCIA")); }
                     oCredito.monto_original = 0;
                     oCredito.debe = 0;
                     if (!dr.IsDBNull(dr.GetOrdinal("ultimo_periodo"))) { oCredito.ultimpo_periodo = dr.GetString(dr.GetOrdinal("ultimo_periodo")); }

@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "IsdBpiOHk0uF/xyRH783zzEI5uzFmm0uZVGIOkiTSPg=",
+  "Hash": "A1kUz5mVEwybmVWzV81dMX0g7cHKtfuBkUoFEuppM1k=",
   "Source": "WSCedulones",
   "BasePath": "_content/WSCedulones",
   "Mode": "Default",
   "ManifestType": "Publish",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
